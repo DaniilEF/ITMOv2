@@ -1,0 +1,2 @@
+Запуск тестов: `make -C lab/demo test` вызывает `python3 -m unittest -v`.
+Основание: lab/Makefile:4-5 и lab/demo/Makefile:2-3; README.md:6.
