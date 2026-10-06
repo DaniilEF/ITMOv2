@@ -1,0 +1,2 @@
+При пустом имени подписчика вызывается исключение ValueError("empty name").
+Основание: lab/demo/service.py:5-7; lab/demo/test_service.py:13-16.
