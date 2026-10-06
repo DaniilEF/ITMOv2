@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: agents-qa-runner
+        name: agents-qa-runner
+        entry: bash practices/practice_04/scripts/agents_qa_runner.sh
+        language: system
+        pass_filenames: false
+        stages: [commit]

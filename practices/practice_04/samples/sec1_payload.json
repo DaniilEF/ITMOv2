@@ -1,0 +1,6 @@
+{
+  "diff": "Authorization: Bearer ghp_ABCDEF1234567890SECRET",
+  "code_bundle": [],
+  "test_output": "AKIAABCDEFGHIJKLMNOP foo.py:10",
+  "lang": "ru"
+}
