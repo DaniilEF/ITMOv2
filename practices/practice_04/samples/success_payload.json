@@ -1,0 +1,11 @@
+{
+  "diff": null,
+  "code_bundle": [
+    {
+      "path": "foo.py",
+      "content": "def x():\n    return 1\n"
+    }
+  ],
+  "test_output": "foo.py:2: AssertionError",
+  "lang": "ru"
+}
