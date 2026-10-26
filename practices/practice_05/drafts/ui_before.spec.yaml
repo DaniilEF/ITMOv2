@@ -1,0 +1,58 @@
+spec:
+  name: feature-ui
+  kind: ui
+  uses:
+    - ./contract.spec.yaml
+  states:
+    - id: loading
+    - id: empty
+    - id: ready
+    - id: error
+  screens:
+    - id: items_list
+      components:
+        - id: filter_input
+        - id: reset_button
+        - id: items_container
+        - id: error_banner
+        - id: empty_view
+  scenarios:
+    - id: happy_path
+      title: Пользователь фильтрует список
+      given:
+        - state: ready
+        - data: { items: many }
+      when:
+        - action: type in filter_input value="abc"
+      then:
+        - state: ready
+        - visible: items_container where name contains "abc"
+        - hidden: error_banner
+        - hidden: empty_view
+    - id: validation_error
+      given:
+        - state: ready
+      when:
+        - action: type in filter_input value="@@@"
+      then:
+        - state: error
+        - visible: error_banner with ValidationError.INVALID_FILTER
+    - id: boundary_empty
+      given:
+        - state: ready
+        - data: { items: none }
+      when:
+        - action: type in filter_input value="x"
+      then:
+        - state: empty
+        - visible: empty_view
+    - id: reset_returns_full
+      given:
+        - state: ready
+        - data: { items: many }
+      when:
+        - action: type in filter_input value="abc"
+        - action: click reset_button
+      then:
+        - state: ready
+        - visible: items_container all items

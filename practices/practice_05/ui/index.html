@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Фильтр списка</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+</head>
+<body>
+  <main class="container">
+    <h1>Фильтр списка</h1>
+    <div class="controls">
+      <input id="filter" placeholder="Введите строку" />
+      <button id="reset">Сброс</button>
+    </div>
+    <div id="error" class="error" hidden></div>
+    <ul id="list" class="list"></ul>
+    <div id="empty" class="empty" hidden>Ничего не найдено</div>
+  </main>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+    }
+  </script>
+</body>
+</html>

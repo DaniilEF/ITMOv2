@@ -1,0 +1,7 @@
+speckit:
+  sources:
+    - practices/practice_05/specs/skit/contract.spec.yaml
+    - practices/practice_05/specs/skit/ui.spec.yaml
+    - practices/practice_05/specs/skit/logic.spec.yaml
+  validation:
+    strict: true
