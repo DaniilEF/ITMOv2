@@ -1,0 +1,2 @@
+В предоставленных материалах нет ответа о CI-системе.
+Основание: в репозитории отсутствуют конфигурации CI/CD (.github/workflows/*.yml, .gitlab-ci.yml, Jenkinsfile, azure-pipelines.yml); demo/README.md:6 указывает только локальную проверку `make test`.

@@ -1,0 +1,5 @@
+Q1: Верно. Ответ указывает `make -C lab/demo test` → `python3 -m unittest -v`; источники: lab/Makefile:4-5, lab/demo/Makefile:2-3, README.md:6.
+Q2: Верно. Пустое имя приводит к ValueError("empty name"); подтверждено кодом service.py:5-7 и тестом test_service.py:13-16.
+Q3: Верно. Функция unsubscribe не реализована (ложная предпосылка); service.py содержит только subscribe, тестов на unsubscribe нет (test_service.py:5-21).
+Q4: Верно. Сведений о CI в материалах нет; в репозитории отсутствуют файлы конфигурации CI, README.md указывает лишь локальный `make test`.
+Q5: Верно. Подписки не переживают перезапуск процесса: хранение в памяти (README.md:2), глобальный `subscribers = set()` инициализируется при старте (service.py:1).
