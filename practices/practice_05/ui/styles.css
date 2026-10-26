@@ -1,0 +1,9 @@
+body { font-family: system-ui, sans-serif; margin: 0; padding: 0; }
+.container { max-width: 720px; margin: 24px auto; padding: 0 16px; }
+.controls { display: flex; gap: 8px; margin-bottom: 12px; }
+input { flex: 1; padding: 8px; }
+button { padding: 8px 12px; }
+.list { list-style: none; padding: 0; margin: 0; }
+.list li { padding: 6px 8px; border-bottom: 1px solid #eee; }
+.error { color: #a00; margin: 8px 0; }
+.empty { color: #666; margin-top: 12px; }

@@ -1,0 +1,53 @@
+spec:
+  name: feature-logic
+  kind: logic
+  uses:
+    - ./contract.spec.yaml
+  models:
+    - id: Item
+      fields:
+        - name: id
+          type: string
+        - name: name
+          type: string
+  operations:
+    - id: filterItems
+      input:
+        - name: query
+          type: string
+        - name: items
+          type: Item[]
+      output:
+        - name: items
+          type: Item[]
+      rules:
+        - if: query matches /^[a-zA-Z0-9\s]{0,40}$/
+          then: return items where name contains query (case-insensitive)
+        - else: throw ValidationError.INVALID_FILTER
+  scenarios:
+    - id: happy_path
+      given:
+        - dataset: items[100]
+      when:
+        - call: filterItems(query="abc", items="@dataset")
+      then:
+        - returns.items: subset where name contains "abc"
+    - id: validation_error
+      when:
+        - call: filterItems(query="@@@", items=[])
+      then:
+        - throws: ValidationError.INVALID_FILTER
+    - id: boundary_empty
+      given:
+        - dataset: items[0]
+      when:
+        - call: filterItems(query="x", items="@dataset")
+      then:
+        - returns.items: []
+    - id: reset_returns_full
+      given:
+        - dataset: items[10]
+      when:
+        - call: filterItems(query="", items=@dataset)
+      then:
+        - returns.items: "@dataset"

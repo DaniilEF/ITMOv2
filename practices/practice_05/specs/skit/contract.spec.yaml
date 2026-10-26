@@ -1,0 +1,19 @@
+spec:
+  name: feature-contract
+  kind: contract
+  models:
+    - id: ValidationError
+      fields:
+        - name: code
+          type: enum
+          values: [INVALID_FILTER]
+        - name: message
+          type: string
+  errors:
+    - id: ValidationError.INVALID_FILTER
+      message: Недопустимый фильтр. Используйте буквы, цифры и пробел, до 40 символов.
+  states:
+    - id: loading
+    - id: ready
+    - id: empty
+    - id: error
