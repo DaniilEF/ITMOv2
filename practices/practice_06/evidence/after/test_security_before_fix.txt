@@ -1,0 +1,334 @@
+test_invalid_json_returns_generic_error (test_security.HttpSecurityTest.test_invalid_json_returns_generic_error) ... FAIL
+test_reviews_view_has_html_content_type (test_security.HttpSecurityTest.test_reviews_view_has_html_content_type) ... ok
+test_context_contains_own_order_and_not_other (test_security.SecurityTest.test_context_contains_own_order_and_not_other) ... ok
+test_context_sqli_is_rejected_or_scoped (test_security.SecurityTest.test_context_sqli_is_rejected_or_scoped) ... FAIL
+test_error_response_has_no_internal_details (test_security.SecurityTest.test_error_response_has_no_internal_details) ... FAIL
+test_execute_customer_can_read_own_receipt (test_security.SecurityTest.test_execute_customer_can_read_own_receipt) ... ok
+test_execute_customer_denied_for_privileged_tools (test_security.SecurityTest.test_execute_customer_denied_for_privileged_tools) ... 
+  test_execute_customer_denied_for_privileged_tools (test_security.SecurityTest.test_execute_customer_denied_for_privileged_tools) (tool='export_profiles', args={}) ... FAIL
+  test_execute_customer_denied_for_privileged_tools (test_security.SecurityTest.test_execute_customer_denied_for_privileged_tools) (tool='read_file', args={'path': 'private/operator-note.txt'}) ... FAIL
+  test_execute_customer_denied_for_privileged_tools (test_security.SecurityTest.test_execute_customer_denied_for_privileged_tools) (tool='read_file', args={'path': '../../private/operator-note.txt'}) ... ERROR
+  test_execute_customer_denied_for_privileged_tools (test_security.SecurityTest.test_execute_customer_denied_for_privileged_tools) (tool='delete_tree', args={'path': '.'}) ... FAIL
+test_execute_requires_session (test_security.SecurityTest.test_execute_requires_session) ... 
+  test_execute_requires_session (test_security.SecurityTest.test_execute_requires_session) (tool='export_profiles') ... FAIL
+  test_execute_requires_session (test_security.SecurityTest.test_execute_requires_session) (tool='read_file') ... FAIL
+  test_execute_requires_session (test_security.SecurityTest.test_execute_requires_session) (tool='delete_tree') ... FAIL
+test_execute_staff_can_export (test_security.SecurityTest.test_execute_staff_can_export) ... ok
+test_files_cross_user_denied (test_security.SecurityTest.test_files_cross_user_denied) ... FAIL
+test_files_require_session (test_security.SecurityTest.test_files_require_session) ... FAIL
+test_files_traversal_denied (test_security.SecurityTest.test_files_traversal_denied) ... 
+  test_files_traversal_denied (test_security.SecurityTest.test_files_traversal_denied) (path='../bob/receipt.txt') ... FAIL
+  test_files_traversal_denied (test_security.SecurityTest.test_files_traversal_denied) (path='../../private/operator-note.txt') ... FAIL
+test_forged_role_denied (test_security.SecurityTest.test_forged_role_denied) ... FAIL
+test_logs_require_staff_and_redact_secrets (test_security.SecurityTest.test_logs_require_staff_and_redact_secrets) ... FAIL
+test_orders_require_session_and_are_scoped (test_security.SecurityTest.test_orders_require_session_and_are_scoped) ... FAIL
+test_price_is_ignored_for_customer (test_security.SecurityTest.test_price_is_ignored_for_customer) ... FAIL
+test_profile_foreign_denied (test_security.SecurityTest.test_profile_foreign_denied) ... FAIL
+test_profile_requires_session (test_security.SecurityTest.test_profile_requires_session) ... FAIL
+test_profile_sqli_denied (test_security.SecurityTest.test_profile_sqli_denied) ... FAIL
+test_reviews_require_session (test_security.SecurityTest.test_reviews_require_session) ... FAIL
+test_search_returns_only_own_profile (test_security.SecurityTest.test_search_returns_only_own_profile) ... FAIL
+test_search_sqli_scoped (test_security.SecurityTest.test_search_sqli_scoped) ... FAIL
+test_staff_can_read_other_user_file (test_security.SecurityTest.test_staff_can_read_other_user_file) ... ok
+test_staff_export_allowed_by_session (test_security.SecurityTest.test_staff_export_allowed_by_session) ... FAIL
+test_xss_is_escaped (test_security.SecurityTest.test_xss_is_escaped) ... FAIL
+
+======================================================================
+ERROR: test_execute_customer_denied_for_privileged_tools (test_security.SecurityTest.test_execute_customer_denied_for_privileged_tools) (tool='read_file', args={'path': '../../private/operator-note.txt'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 165, in test_execute_customer_denied_for_privileged_tools
+    status, result = self.request(
+                     ~~~~~~~~~~~~^
+        "POST", "/assistant/execute", {"decision": decision}, headers=auth
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 26, in request
+    return self.shop.dispatch(method, path, body or {}, headers or {})
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/service.py", line 103, in dispatch
+    return 200, {"content": self.sandbox.read(arguments["path"])}
+                            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/sandbox.py", line 28, in read
+    return self.path(name).read_text(encoding="utf-8")
+           ~~~~~~~~~^^^^^^
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/sandbox.py", line 24, in path
+    raise ValueError("outside exercise sandbox")
+ValueError: outside exercise sandbox
+
+======================================================================
+FAIL: test_invalid_json_returns_generic_error (test_security.HttpSecurityTest.test_invalid_json_returns_generic_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 271, in test_invalid_json_returns_generic_error
+    self.assertNotIn("JSONDecodeError", body)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'JSONDecodeError' unexpectedly found in '{"error": "Expecting property name enclosed in double quotes: line 1 column 2 (char 1)", "type": "JSONDecodeError"}'
+
+======================================================================
+FAIL: test_context_sqli_is_rejected_or_scoped (test_security.SecurityTest.test_context_sqli_is_rejected_or_scoped)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 210, in test_context_sqli_is_rejected_or_scoped
+    self.assertIn(status, (400, 403))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 not found in (400, 403)
+
+======================================================================
+FAIL: test_error_response_has_no_internal_details (test_security.SecurityTest.test_error_response_has_no_internal_details)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 224, in test_error_response_has_no_internal_details
+    status, result = self.request("GET", "/profile?id=abc", headers=auth)
+                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 26, in request
+    return self.shop.dispatch(method, path, body or {}, headers or {})
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/service.py", line 57, in dispatch
+    return 200, self.rows(f"SELECT * FROM profiles WHERE id = {query.get('id', '1')}")
+                ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/service.py", line 39, in rows
+    return [dict(row) for row in self.db.execute(query)]
+                                 ~~~~~~~~~~~~~~~^^^^^^^
+sqlite3.OperationalError: no such column: abc
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 226, in test_error_response_has_no_internal_details
+    self.fail(f"unhandled exception leaked to caller: {exc}")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unhandled exception leaked to caller: no such column: abc
+
+======================================================================
+FAIL: test_execute_customer_denied_for_privileged_tools (test_security.SecurityTest.test_execute_customer_denied_for_privileged_tools) (tool='export_profiles', args={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 168, in test_execute_customer_denied_for_privileged_tools
+    self.assertIn(status, (403, 400))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 not found in (403, 400)
+
+======================================================================
+FAIL: test_execute_customer_denied_for_privileged_tools (test_security.SecurityTest.test_execute_customer_denied_for_privileged_tools) (tool='read_file', args={'path': 'private/operator-note.txt'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 168, in test_execute_customer_denied_for_privileged_tools
+    self.assertIn(status, (403, 400))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 not found in (403, 400)
+
+======================================================================
+FAIL: test_execute_customer_denied_for_privileged_tools (test_security.SecurityTest.test_execute_customer_denied_for_privileged_tools) (tool='delete_tree', args={'path': '.'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 168, in test_execute_customer_denied_for_privileged_tools
+    self.assertIn(status, (403, 400))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 not found in (403, 400)
+
+======================================================================
+FAIL: test_execute_requires_session (test_security.SecurityTest.test_execute_requires_session) (tool='export_profiles')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 153, in test_execute_requires_session
+    self.assertIn(status, (401, 403))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 not found in (401, 403)
+
+======================================================================
+FAIL: test_execute_requires_session (test_security.SecurityTest.test_execute_requires_session) (tool='read_file')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 153, in test_execute_requires_session
+    self.assertIn(status, (401, 403))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 not found in (401, 403)
+
+======================================================================
+FAIL: test_execute_requires_session (test_security.SecurityTest.test_execute_requires_session) (tool='delete_tree')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 153, in test_execute_requires_session
+    self.assertIn(status, (401, 403))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 not found in (401, 403)
+
+======================================================================
+FAIL: test_files_cross_user_denied (test_security.SecurityTest.test_files_cross_user_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 91, in test_files_cross_user_denied
+    self.assertEqual(
+    ~~~~~~~~~~~~~~~~^
+        self.request("GET", "/files?user=bob&path=receipt.txt", headers=auth)[0],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        403,
+        ^^^^
+    )
+    ^
+AssertionError: 200 != 403
+
+======================================================================
+FAIL: test_files_require_session (test_security.SecurityTest.test_files_require_session)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 85, in test_files_require_session
+    self.assertEqual(
+    ~~~~~~~~~~~~~~~~^
+        self.request("GET", "/files?user=alice&path=receipt.txt")[0], 401
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+AssertionError: 200 != 401
+
+======================================================================
+FAIL: test_files_traversal_denied (test_security.SecurityTest.test_files_traversal_denied) (path='../bob/receipt.txt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 103, in test_files_traversal_denied
+    self.assertIn(status, (400, 403, 404))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 not found in (400, 403, 404)
+
+======================================================================
+FAIL: test_files_traversal_denied (test_security.SecurityTest.test_files_traversal_denied) (path='../../private/operator-note.txt')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 103, in test_files_traversal_denied
+    self.assertIn(status, (400, 403, 404))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 not found in (400, 403, 404)
+
+======================================================================
+FAIL: test_forged_role_denied (test_security.SecurityTest.test_forged_role_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 68, in test_forged_role_denied
+    self.assertIn(
+    ~~~~~~~~~~~~~^
+        self.request("GET", "/admin/export", headers={"X-Role": "staff"})[0],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        (401, 403),
+        ^^^^^^^^^^^
+    )
+    ^
+AssertionError: 200 not found in (401, 403)
+
+======================================================================
+FAIL: test_logs_require_staff_and_redact_secrets (test_security.SecurityTest.test_logs_require_staff_and_redact_secrets)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 196, in test_logs_require_staff_and_redact_secrets
+    self.assertIn(self.request("GET", "/debug/logs")[0], (401, 403))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 not found in (401, 403)
+
+======================================================================
+FAIL: test_orders_require_session_and_are_scoped (test_security.SecurityTest.test_orders_require_session_and_are_scoped)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 61, in test_orders_require_session_and_are_scoped
+    self.assertEqual(self.request("GET", "/orders")[0], 401)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 != 401
+
+======================================================================
+FAIL: test_price_is_ignored_for_customer (test_security.SecurityTest.test_price_is_ignored_for_customer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 120, in test_price_is_ignored_for_customer
+    self.assertEqual(order["price"], 1500)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 1500
+
+======================================================================
+FAIL: test_profile_foreign_denied (test_security.SecurityTest.test_profile_foreign_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 40, in test_profile_foreign_denied
+    self.assertEqual(self.request("GET", "/profile?id=2", headers=auth)[0], 403)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 != 403
+
+======================================================================
+FAIL: test_profile_requires_session (test_security.SecurityTest.test_profile_requires_session)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 36, in test_profile_requires_session
+    self.assertEqual(self.request("GET", "/profile?id=1")[0], 401)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 != 401
+
+======================================================================
+FAIL: test_profile_sqli_denied (test_security.SecurityTest.test_profile_sqli_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 45, in test_profile_sqli_denied
+    self.assertIn(status, (400, 403))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 200 not found in (400, 403)
+
+======================================================================
+FAIL: test_reviews_require_session (test_security.SecurityTest.test_reviews_require_session)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 137, in test_reviews_require_session
+    self.assertEqual(
+    ~~~~~~~~~~~~~~~~^
+        self.request("POST", "/reviews", {"product": "chair", "text": "x"})[0],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        401,
+        ^^^^
+    )
+    ^
+AssertionError: 201 != 401
+
+======================================================================
+FAIL: test_search_returns_only_own_profile (test_security.SecurityTest.test_search_returns_only_own_profile)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 58, in test_search_returns_only_own_profile
+    self.assertEqual([row["name"] for row in result], ["TEST_ALICE"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['TEST_ALICE', 'TEST_BOB'] != ['TEST_ALICE']
+
+First list contains 1 additional elements.
+First extra element 1:
+'TEST_BOB'
+
+- ['TEST_ALICE', 'TEST_BOB']
++ ['TEST_ALICE']
+
+======================================================================
+FAIL: test_search_sqli_scoped (test_security.SecurityTest.test_search_sqli_scoped)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 52, in test_search_sqli_scoped
+    self.assertNotIn("TEST_BOB", json.dumps(result))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'TEST_BOB' unexpectedly found in '[{"id": 1, "name": "TEST_ALICE", "email": "alice@example.invalid", "address": "TEST_ADDRESS_A"}, {"id": 2, "name": "TEST_BOB", "email": "bob@example.invalid", "address": "TEST_ADDRESS_B"}]'
+
+======================================================================
+FAIL: test_staff_export_allowed_by_session (test_security.SecurityTest.test_staff_export_allowed_by_session)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 81, in test_staff_export_allowed_by_session
+    self.assertEqual(status, 200)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+AssertionError: 403 != 200
+
+======================================================================
+FAIL: test_xss_is_escaped (test_security.SecurityTest.test_xss_is_escaped)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/c/Users/danho/ITMOv2/practices/practice_06/lab/test_security.py", line 133, in test_xss_is_escaped
+    self.assertNotIn(payload, body)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: '<script>alert(1)</script>' unexpectedly found in '<html><body><p><script>alert(1)</script></p></body></html>'
+
+----------------------------------------------------------------------
+Ran 25 tests in 0.569s
+
+FAILED (failures=25, errors=1)

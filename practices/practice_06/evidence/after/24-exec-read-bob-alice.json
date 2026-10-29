@@ -1,0 +1,22 @@
+{
+  "id": "24-exec-read-bob-alice",
+  "title": "alice: read_file files/bob/receipt.txt",
+  "request": {
+    "method": "POST",
+    "path": "/assistant/execute",
+    "body": {
+      "decision": {
+        "tool": "read_file",
+        "arguments": {
+          "path": "files/bob/receipt.txt"
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 403,
+    "body": {
+      "error": "forbidden"
+    }
+  }
+}

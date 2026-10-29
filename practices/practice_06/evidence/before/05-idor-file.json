@@ -1,0 +1,24 @@
+{
+  "id": "05-idor-file",
+  "title": "IDOR: alice читает чек bob",
+  "endpoint": "GET /files?user=bob&path=receipt.txt",
+  "expected": "403/404 для чужого чека",
+  "actual": "status=200, body={'content': 'TEST_BOB receipt: lamp, 1500 RUB'}",
+  "severity": "High",
+  "cwe": "CWE-639",
+  "owasp_llm": "-",
+  "request": {
+    "method": "GET",
+    "path": "/files?user=bob&path=receipt.txt",
+    "body": null,
+    "headers": {
+      "X-Token": "<token>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "content": "TEST_BOB receipt: lamp, 1500 RUB"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "20-exec-export-alice",
+  "title": "alice: export_profiles",
+  "request": {
+    "method": "POST",
+    "path": "/assistant/execute",
+    "body": {
+      "decision": {
+        "tool": "export_profiles",
+        "arguments": {}
+      }
+    }
+  },
+  "response": {
+    "status": 403,
+    "body": {
+      "error": "staff only"
+    }
+  }
+}

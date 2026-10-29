@@ -1,0 +1,20 @@
+{
+  "id": "12-stored-xss-view",
+  "title": "Stored XSS: HTML без экранирования",
+  "endpoint": "GET /reviews/view",
+  "expected": "Тег экранирован как &lt;script&gt;",
+  "actual": "status=200, raw_script=False",
+  "severity": "Medium",
+  "cwe": "CWE-79",
+  "owasp_llm": "LLM02",
+  "request": {
+    "method": "GET",
+    "path": "/reviews/view",
+    "body": null,
+    "headers": {}
+  },
+  "response": {
+    "status": 200,
+    "body": "<html><body><p>&lt;script&gt;alert(&#x27;xss&#x27;)&lt;/script&gt;</p></body></html>"
+  }
+}

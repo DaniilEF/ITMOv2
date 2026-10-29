@@ -1,0 +1,31 @@
+{
+  "id": "26-exec-export-staff",
+  "title": "staff: export_profiles",
+  "request": {
+    "method": "POST",
+    "path": "/assistant/execute",
+    "body": {
+      "decision": {
+        "tool": "export_profiles",
+        "arguments": {}
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "id": 1,
+        "name": "TEST_ALICE",
+        "email": "alice@example.invalid",
+        "address": "TEST_ADDRESS_A"
+      },
+      {
+        "id": 2,
+        "name": "TEST_BOB",
+        "email": "bob@example.invalid",
+        "address": "TEST_ADDRESS_B"
+      }
+    ]
+  }
+}

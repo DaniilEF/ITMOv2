@@ -1,0 +1,22 @@
+{
+  "id": "25-exec-read-own-alice",
+  "title": "alice: read_file files/alice/receipt.txt",
+  "request": {
+    "method": "POST",
+    "path": "/assistant/execute",
+    "body": {
+      "decision": {
+        "tool": "read_file",
+        "arguments": {
+          "path": "files/alice/receipt.txt"
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "content": "TEST_ALICE receipt: chair, 5000 RUB"
+    }
+  }
+}

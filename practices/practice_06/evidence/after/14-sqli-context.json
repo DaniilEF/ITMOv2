@@ -1,0 +1,24 @@
+{
+  "id": "14-sqli-context",
+  "title": "SQL-инъекция в /assistant/context?order_id",
+  "endpoint": "GET /assistant/context?order_id=0 OR 1=1",
+  "expected": "Только заказ alice",
+  "actual": "status=400, chair=False, lamp=False",
+  "severity": "High",
+  "cwe": "CWE-89",
+  "owasp_llm": "LLM01",
+  "request": {
+    "method": "GET",
+    "path": "/assistant/context?order_id=0+OR+1%3D1",
+    "body": null,
+    "headers": {
+      "X-Token": "<token>"
+    }
+  },
+  "response": {
+    "status": 400,
+    "body": {
+      "error": "invalid order id"
+    }
+  }
+}

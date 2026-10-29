@@ -1,0 +1,22 @@
+{
+  "id": "01-sqli-profile",
+  "title": "SQL-инъекция в /profile?id",
+  "endpoint": "GET /profile?id=1 OR 1=1",
+  "expected": "Только профиль c id=1",
+  "actual": "status=401, names=[]",
+  "severity": "High",
+  "cwe": "CWE-89",
+  "owasp_llm": "-",
+  "request": {
+    "method": "GET",
+    "path": "/profile?id=1+OR+1%3D1",
+    "body": null,
+    "headers": {}
+  },
+  "response": {
+    "status": 401,
+    "body": {
+      "error": "login required"
+    }
+  }
+}

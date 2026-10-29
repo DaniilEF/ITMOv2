@@ -1,0 +1,29 @@
+{
+  "id": "02-idor-profile",
+  "title": "IDOR: alice читает профиль bob",
+  "endpoint": "GET /profile?id=2",
+  "expected": "403/404 для чужого профиля",
+  "actual": "status=200, names=['TEST_BOB']",
+  "severity": "High",
+  "cwe": "CWE-639",
+  "owasp_llm": "-",
+  "request": {
+    "method": "GET",
+    "path": "/profile?id=2",
+    "body": null,
+    "headers": {
+      "X-Token": "<token>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "id": 2,
+        "name": "TEST_BOB",
+        "email": "bob@example.invalid",
+        "address": "TEST_ADDRESS_B"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "15-exec-export-noauth",
+  "title": "Executor без auth: export_profiles",
+  "endpoint": "POST /assistant/execute (export_profiles)",
+  "expected": "401 без сессии",
+  "actual": "status=401, rows=n/a",
+  "severity": "Critical",
+  "cwe": "CWE-306",
+  "owasp_llm": "LLM06",
+  "request": {
+    "method": "POST",
+    "path": "/assistant/execute",
+    "body": {
+      "decision": {
+        "tool": "export_profiles",
+        "arguments": {}
+      }
+    },
+    "headers": {}
+  },
+  "response": {
+    "status": 401,
+    "body": {
+      "error": "login required"
+    }
+  }
+}

