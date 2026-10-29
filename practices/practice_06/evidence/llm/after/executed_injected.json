@@ -1,0 +1,16 @@
+{
+  "request": {
+    "decision": {
+      "tool": "read_file",
+      "arguments": {
+        "path": "/mnt/c/Users/danho/ITMOv2/practices/practice_06/evidence/llm/after/context_injected.json"
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "body": {
+      "error": "invalid path"
+    }
+  }
+}

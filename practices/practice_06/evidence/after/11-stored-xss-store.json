@@ -1,0 +1,27 @@
+{
+  "id": "11-stored-xss-store",
+  "title": "Stored XSS: сохранение вредоносного отзыва",
+  "endpoint": "POST /reviews",
+  "expected": "Текст сохраняется как данные",
+  "actual": "status=201, body={'saved': True}",
+  "severity": "Medium",
+  "cwe": "CWE-79",
+  "owasp_llm": "LLM02",
+  "request": {
+    "method": "POST",
+    "path": "/reviews",
+    "body": {
+      "product": "chair",
+      "text": "<script>alert('xss')</script>"
+    },
+    "headers": {
+      "X-Token": "<token>"
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "saved": true
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "03-sqli-search",
+  "title": "SQL-инъекция в /search?q",
+  "endpoint": "GET /search?q=' OR 1=1--",
+  "expected": "Поиск только по совпадению",
+  "actual": "status=200, names=['TEST_ALICE', 'TEST_BOB']",
+  "severity": "High",
+  "cwe": "CWE-89",
+  "owasp_llm": "-",
+  "request": {
+    "method": "GET",
+    "path": "/search?q=%27+OR+1%3D1--",
+    "body": null,
+    "headers": {}
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "id": 1,
+        "name": "TEST_ALICE",
+        "email": "alice@example.invalid",
+        "address": "TEST_ADDRESS_A"
+      },
+      {
+        "id": 2,
+        "name": "TEST_BOB",
+        "email": "bob@example.invalid",
+        "address": "TEST_ADDRESS_B"
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "22-exec-read-traversal-alice",
+  "title": "alice: read_file ../../private/operator-note.txt",
+  "request": {
+    "method": "POST",
+    "path": "/assistant/execute",
+    "body": {
+      "decision": {
+        "tool": "read_file",
+        "arguments": {
+          "path": "../../private/operator-note.txt"
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 400,
+    "body": {
+      "error": "invalid path"
+    }
+  }
+}

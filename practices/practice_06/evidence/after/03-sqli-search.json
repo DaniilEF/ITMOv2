@@ -1,0 +1,22 @@
+{
+  "id": "03-sqli-search",
+  "title": "SQL-инъекция в /search?q",
+  "endpoint": "GET /search?q=' OR 1=1--",
+  "expected": "Поиск только по совпадению",
+  "actual": "status=401, names=[]",
+  "severity": "High",
+  "cwe": "CWE-89",
+  "owasp_llm": "-",
+  "request": {
+    "method": "GET",
+    "path": "/search?q=%27+OR+1%3D1--",
+    "body": null,
+    "headers": {}
+  },
+  "response": {
+    "status": 401,
+    "body": {
+      "error": "login required"
+    }
+  }
+}

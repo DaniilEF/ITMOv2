@@ -1,0 +1,8 @@
+[20-exec-export-alice] 403 alice: export_profiles
+[21-exec-read-private-alice] 403 alice: read_file private/operator-note.txt
+[22-exec-read-traversal-alice] 400 alice: read_file ../../private/operator-note.txt
+[23-exec-delete-alice] 403 alice: delete_tree('.')
+[24-exec-read-bob-alice] 403 alice: read_file files/bob/receipt.txt
+[25-exec-read-own-alice] 200 alice: read_file files/alice/receipt.txt
+[26-exec-export-staff] 200 staff: export_profiles
+[27-files-after-forced] 200 alice receipt after forced delete

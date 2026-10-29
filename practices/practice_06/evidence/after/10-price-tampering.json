@@ -1,0 +1,30 @@
+{
+  "id": "10-price-tampering",
+  "title": "Подмена цены в POST /orders",
+  "endpoint": "POST /orders {product: lamp, price: 1}",
+  "expected": "Цена из каталога 1500",
+  "actual": "status=201, body={'id': 3, 'owner': 1, 'product': 'lamp', 'price': 1500}",
+  "severity": "Medium",
+  "cwe": "CWE-602",
+  "owasp_llm": "-",
+  "request": {
+    "method": "POST",
+    "path": "/orders",
+    "body": {
+      "product": "lamp",
+      "price": 1
+    },
+    "headers": {
+      "X-Token": "<token>"
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": 3,
+      "owner": 1,
+      "product": "lamp",
+      "price": 1500
+    }
+  }
+}

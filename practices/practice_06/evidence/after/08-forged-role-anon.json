@@ -1,0 +1,24 @@
+{
+  "id": "08-forged-role-anon",
+  "title": "Подделка X-Role без сессии",
+  "endpoint": "GET /admin/export (X-Role: staff)",
+  "expected": "401/403 без валидной staff-сессии",
+  "actual": "status=401, rows=n/a",
+  "severity": "Critical",
+  "cwe": "CWE-285",
+  "owasp_llm": "-",
+  "request": {
+    "method": "GET",
+    "path": "/admin/export",
+    "body": null,
+    "headers": {
+      "X-Role": "staff"
+    }
+  },
+  "response": {
+    "status": 401,
+    "body": {
+      "error": "login required"
+    }
+  }
+}

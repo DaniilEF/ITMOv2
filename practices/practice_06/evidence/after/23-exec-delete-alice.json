@@ -1,0 +1,22 @@
+{
+  "id": "23-exec-delete-alice",
+  "title": "alice: delete_tree('.')",
+  "request": {
+    "method": "POST",
+    "path": "/assistant/execute",
+    "body": {
+      "decision": {
+        "tool": "delete_tree",
+        "arguments": {
+          "path": "."
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 403,
+    "body": {
+      "error": "staff only"
+    }
+  }
+}

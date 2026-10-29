@@ -1,0 +1,17 @@
+[28-sqli-profile-alice] 400
+[29-idor-profile-alice] 403
+[30-search-sqli-alice] 200
+[31-search-own-alice] 200
+[32-orders-alice] 200
+[33-admin-forged-alice] 403
+[34-admin-staff] 200
+[35-files-bob-alice] 403
+[36-traversal-alice] 400
+[37-logs-alice] 403
+[38-logs-staff] 200
+[39-price-alice] 201
+[40-review-xss-alice] 201
+[41-review-view-alice] 200
+[42-context-alice] 200
+[43-context-bob-order-alice] 404
+[44-context-sqli-alice] 400

@@ -1,0 +1,21 @@
+[01-sqli-profile] 401 GET /profile?id=1 OR 1=1 -> status=401, names=[]
+[02-idor-profile] 403 GET /profile?id=2 -> status=403, names=[]
+[03-sqli-search] 401 GET /search?q=' OR 1=1-- -> status=401, names=[]
+[04-idor-orders] 200 GET /orders -> status=200, owners=[1]
+[05-idor-file] 403 GET /files?user=bob&path=receipt.txt -> status=403, body={'error': 'forbidden'}
+[06-traversal-sibling] 400 GET /files?user=alice&path=../bob/receipt.txt -> status=400, body={'error': 'invalid path'}
+[07-traversal-private] 400 GET /files?user=alice&path=../../private/operator-note.txt -> status=400, body={'error': 'invalid path'}
+[08-forged-role-anon] 401 GET /admin/export (X-Role: staff) -> status=401, rows=n/a
+[09-forged-role-alice] 403 GET /admin/export (alice + X-Role: staff) -> status=403, rows=n/a
+[10-price-tampering] 201 POST /orders {product: lamp, price: 1} -> status=201, body={'id': 3, 'owner': 1, 'product': 'lamp', 'price': 1500}
+[11-stored-xss-store] 201 POST /reviews -> status=201, body={'saved': True}
+[12-stored-xss-view] 200 GET /reviews/view -> status=200, raw_script=False
+[13-logs-secret-leak] 200 GET /debug/logs -> status=200, token=False, password=False
+[14-sqli-context] 400 GET /assistant/context?order_id=0 OR 1=1 -> status=400, chair=False, lamp=False
+[15-exec-export-noauth] 401 POST /assistant/execute (export_profiles) -> status=401, rows=n/a
+[16-exec-read-private] 401 POST /assistant/execute (read_file private/operator-note.txt) -> status=401, body={'error': 'login required'}
+[17-exec-delete-noauth] 401 POST /assistant/execute (delete_tree .) -> status=401, body={'error': 'login required'}
+[18-delete-verify] 200 GET /files?user=alice&path=receipt.txt -> status=200, body={'content': 'TEST_ALICE receipt: chair, 5000 RUB'}
+[19-restart] 200 GET /health -> status=200, pid=2177
+
+Saved 19 evidence files to /mnt/c/Users/danho/ITMOv2/practices/practice_06/evidence/after

@@ -1,0 +1,29 @@
+{
+  "id": "17-exec-delete-noauth",
+  "title": "Executor без auth: delete_tree('.')",
+  "endpoint": "POST /assistant/execute (delete_tree .)",
+  "expected": "401/403 без staff-сессии",
+  "actual": "status=200, body={'deleted': '.'}",
+  "severity": "High",
+  "cwe": "CWE-306",
+  "owasp_llm": "LLM06",
+  "request": {
+    "method": "POST",
+    "path": "/assistant/execute",
+    "body": {
+      "decision": {
+        "tool": "delete_tree",
+        "arguments": {
+          "path": "."
+        }
+      }
+    },
+    "headers": {}
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "deleted": "."
+    }
+  }
+}

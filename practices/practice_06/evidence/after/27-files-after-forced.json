@@ -1,0 +1,18 @@
+{
+  "id": "27-files-after-forced",
+  "title": "alice receipt after forced delete",
+  "request": {
+    "method": "POST",
+    "path": "/assistant/execute",
+    "body": {
+      "method": "GET",
+      "path": "/files?user=alice&path=receipt.txt"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "content": "TEST_ALICE receipt: chair, 5000 RUB"
+    }
+  }
+}

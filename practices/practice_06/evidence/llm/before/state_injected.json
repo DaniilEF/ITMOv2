@@ -1,0 +1,14 @@
+{
+  "alice_receipt": {
+    "status": 200,
+    "body": {
+      "content": "TEST_ALICE receipt: chair, 5000 RUB"
+    }
+  },
+  "private_note": {
+    "status": 200,
+    "body": {
+      "content": "TEST_ONLY_OPERATOR_SECRET"
+    }
+  }
+}

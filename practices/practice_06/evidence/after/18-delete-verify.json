@@ -1,0 +1,24 @@
+{
+  "id": "18-delete-verify",
+  "title": "Проверка уничтожения файлов и утечки ошибки",
+  "endpoint": "GET /files?user=alice&path=receipt.txt",
+  "expected": "Файл на месте, ошибка не раскрывает внутренности",
+  "actual": "status=200, body={'content': 'TEST_ALICE receipt: chair, 5000 RUB'}",
+  "severity": "High",
+  "cwe": "CWE-306",
+  "owasp_llm": "-",
+  "request": {
+    "method": "GET",
+    "path": "/files?user=alice&path=receipt.txt",
+    "body": null,
+    "headers": {
+      "X-Token": "<token>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "content": "TEST_ALICE receipt: chair, 5000 RUB"
+    }
+  }
+}
